@@ -18,7 +18,7 @@ class CreateMenusTable extends Migration
             $table->string('name');
             $table->string('key')->unique();
             $table->string('list_id_category')->nullable();
-            $table->string('data')->nullable();
+            $table->text('data')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->unsignedInteger('created_by');
             $table->timestamps();

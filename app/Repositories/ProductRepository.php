@@ -33,5 +33,8 @@ class ProductRepository extends AbstractRepository
     {
         return $this->model->where('status', $status)->get();
     }
-
+    public function getProductByCategoryId($category_id)
+    {
+        return $this->model->where([['status', true], ['category_id', $category_id]])->get();
+    }
 }

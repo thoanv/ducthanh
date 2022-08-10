@@ -20,6 +20,7 @@ class CreateTrademarksTable extends Migration
             $table->string('slug')->unique()->nullable();
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('featured')->default(0);
+            $table->unsignedInteger('category_id');
             $table->timestamps();
         });
     }

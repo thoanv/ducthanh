@@ -18,6 +18,25 @@
                         </div>
                     </div>
                     <div class="form-group row mb-3">
+                        <label for="category_id" class="col-sm-3 col-form-label">Danh mục</label>
+                        <div class="col-sm-9">
+                            <select name="category_id" id="category_id" class="form-control">
+                                <option value="">--Root--</option>
+                                @foreach($categories as $key => $value)
+                                    <option value="{{$value['id']}}" {{$value['id'] == $trademark['parent_id'] ? 'selected': ''}}>
+                                        @php
+                                            $str = '';
+                                            for($i = 0; $i< $value->level; $i++){
+                                                echo $str;
+                                                $str.='-- ';
+                                            }
+                                        @endphp
+                                        {{$value['name']}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
                         <label for="name" class="col-sm-3 col-form-label">Ảnh</label>
                         <div class="col-sm-9">
                             <div class="upload_image" data-name="avatar">

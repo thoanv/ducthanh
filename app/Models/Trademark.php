@@ -12,6 +12,12 @@ class Trademark extends Model
         'name',
         'avatar',
         'slug',
-        'status'
+        'status',
+        'featured',
+        'category_id'
     ];
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

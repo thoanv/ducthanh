@@ -25,10 +25,12 @@ class CreateProductsTable extends Migration
             $table->integer('star')->default(5);
             $table->tinyInteger('favourite')->default(0);
             $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('search')->default(0);
             $table->integer('price')->default(0);
             $table->integer('discount')->default(0);
             $table->integer('quantity')->default(0);
 
+            $table->string('key_search')->nullable();
             $table->string('SKU')->nullable();
             $table->string('bao_hanh')->nullable();
 

@@ -100,7 +100,7 @@
                 <div class="form-group row mb-3">
                     <label for="price" class="col-sm-3 col-form-label">Giá bán</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="price" placeholder="eg. 6 Tháng" name="price" data-type="currency"
+                        <input type="text" class="form-control" id="price" placeholder="eg. 1.200.000" name="price" data-type="currency"
                                value="{{old('price', number_format($product['price']))}}">
                     </div>
                 </div>
@@ -109,6 +109,13 @@
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="discount" placeholder="eg. 30" name="discount"
                                value="{{old('discount', $product['discount'])}}">
+                    </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label for="key_search" class="col-sm-3 col-form-label">Keyy search</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="key_search" placeholder="eg.Bia Hà Nội" name="key_search"
+                               value="{{old('key_search', $product['key_search'])}}">
                     </div>
                 </div>
             </div>
@@ -155,6 +162,18 @@
                         <input type="checkbox" class="form-check-input"
                                {{$product['status'] ? "checked" : ''}} value="{{$product['status']}}" name="status">
                         Trạng thái <i class="input-helper"></i></label>
+                </div>
+                <div class="form-check form-check-flat form-check-primary mb-4">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input"
+                               {{$product['favourite'] ? "checked" : ''}} value="{{$product['favourite']}}" name="favourite">
+                        Nổi bật <i class="input-helper"></i></label>
+                </div>
+                <div class="form-check form-check-flat form-check-primary mb-4">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input"
+                               {{$product['search'] ? "checked" : ''}} value="{{$product['search']}}" name="search">
+                        Tìm kiếm nhanh <i class="input-helper"></i></label>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary me-2" name="type_submit">Lưu</button>

@@ -54,4 +54,42 @@ class Category extends Model
     {
         return $this->belongsToMany(Post::class, 'category_post');
     }
+    public function getType()
+    {
+        $data = [];
+        switch ($this->type) {
+            case 'product':
+                $data['css'] = 'badge-outline-primary';
+                $data['title'] = 'Sản phẩm';
+            break;
+            case 'posts':
+                $data['css'] = 'badge-outline-success';
+                $data['title'] = 'Tin tức';
+            break;
+            case 'policy':
+                $data['css'] = 'badge-outline-danger';
+                $data['title'] = 'Chính sách';
+            break;
+            case 'contact':
+                $data['css'] = 'badge-outline-warning';
+                $data['title'] = 'Liên hệ';
+            break;
+            case 'tutorial':
+                $data['css'] = 'badge-outline-info';
+                $data['title'] = 'Hướng dẫn';
+            break;
+            default:
+                $data['css'] = 'badge-outline-success';
+                $data['title'] = 'Giới thiệu';
+        }
+        return $data;
+    }
+    public function subproducts()
+    {
+        return $this->hasManyThrough(Product::class, self::class, 'parent_id', 'category_id');
+    }
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

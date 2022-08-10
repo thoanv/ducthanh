@@ -99,7 +99,9 @@
                                     <th scope="col" class="text-center">Danh mục</th>
                                     <th scope="col">Giá bán</th>
                                     <th scope="col" class="text-center">Tạo bởi</th>
+                                    <th scope="col" class="text-center">Nổi bật</th>
                                     <th scope="col" class="text-center">Trạng thái</th>
+                                    <th scope="col" class="text-center">Tìm kiếm nhanh</th>
                                     <th scope="col" class="text-center">Hành động</th>
                                 </tr>
                                 </thead>
@@ -152,8 +154,22 @@
                                         <td role="cell" class="text-center">
                                             <div class="form-check form-switch" style="display: inline-block">
                                                 <input name="my-checkbox" type="checkbox" class="form-check-input css-switch" data-id="{{$item['id']}}"
+                                                       data-api="{{route('enable-column')}}" data-table="products" data-column="favourite"
+                                                        {{ $item['favourite'] ? 'checked="checked"' : '' }}>
+                                            </div>
+                                        </td>
+                                        <td role="cell" class="text-center">
+                                            <div class="form-check form-switch" style="display: inline-block">
+                                                <input name="my-checkbox" type="checkbox" class="form-check-input css-switch" data-id="{{$item['id']}}"
                                                        data-api="{{route('enable-column')}}" data-table="products" data-column="status"
                                                         {{ $item['status'] ? 'checked="checked"' : '' }}>
+                                            </div>
+                                        </td>
+                                        <td role="cell" class="text-center">
+                                            <div class="form-check form-switch" style="display: inline-block">
+                                                <input name="my-checkbox" type="checkbox" class="form-check-input css-switch" data-id="{{$item['id']}}"
+                                                       data-api="{{route('enable-column')}}" data-table="products" data-column="search"
+                                                        {{ $item['search'] ? 'checked="checked"' : '' }}>
                                             </div>
                                         </td>
                                         <td class="text-center">

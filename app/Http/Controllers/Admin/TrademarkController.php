@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Category;
 use App\Models\Trademark;
 use App\Http\Requests\StoreTrademarkRequest;
 use App\Http\Requests\UpdateTrademarkRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\TrademarkRepository as TrademarkRepo;
+use App\Repositories\CategoryRepository as CategoryRepo;
 use Illuminate\Support\Str;
 
 class TrademarkController extends Controller
@@ -14,9 +16,11 @@ class TrademarkController extends Controller
     protected $view = 'admin.trademarks';
     protected $route = 'trademarks';
     protected $trademarkRepo;
-    public function __construct(TrademarkRepo $trademarkRepo)
+    protected $categoryRepo;
+    public function __construct(TrademarkRepo $trademarkRepo, CategoryRepo $categoryRepo)
     {
         $this->trademarkRepo = $trademarkRepo;
+        $this->categoryRepo = $categoryRepo;
     }
     /**
      * Display a listing of the resource.
@@ -40,12 +44,20 @@ class TrademarkController extends Controller
     public function create(Trademark $trademark)
     {
         $this->authorize('create', $trademark);
+        $categories = $this->getCategories();
         return view($this->view.'.create',[
             'trademark' => $trademark,
+            'categories' => $categories,
             'view' => $this->view,
         ]);
     }
-
+    private function getCategories()
+    {
+        $categories = $this->categoryRepo->getCategoriesByType();
+        $listCategory = [];
+        Category::recursive($categories, $parents = 0, $level = 1, $listCategory);
+        return $listCategory;
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -54,7 +66,7 @@ class TrademarkController extends Controller
      */
     public function store(StoreTrademarkRequest $request)
     {
-        $data = $request->only('name', 'avatar');
+        $data = $request->only('name', 'avatar', 'category_id');
         $data['status'] = isset($request['status']) ? 1 : 0;
         $data['slug'] = Str::slug($request->name);
         $this->trademarkRepo->create($data);
@@ -96,7 +108,7 @@ class TrademarkController extends Controller
      */
     public function update(UpdateTrademarkRequest $request, Trademark $trademark)
     {
-        $data = $request->only('name', 'avatar');
+        $data = $request->only('name', 'avatar', 'category_id');
         $data['status'] = isset($request['status']) ? 1 : 0;
         $data['slug'] = Str::slug($request->name);
         $this->trademarkRepo->update($data, $trademark['id']);

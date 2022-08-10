@@ -223,7 +223,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-elevator"></i>
               </span>
-                    <span class="menu-title">Nhãn hiệu</span>
+                    <span class="menu-title">Thương hiệu</span>
                     <i class="menu-arrow"></i>
                 </a>
                 <div

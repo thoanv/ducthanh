@@ -23,7 +23,8 @@ class Product extends Model
         'price',
         'discount',
         'quantity',
-
+        'search',
+        'key_search',
         'SKU',
         'bao_hanh',
 
@@ -56,5 +57,9 @@ class Product extends Model
             $price = $this->price * ((100 - $this->discount)/100);
 
         return number_format($price, 0, '.', '.');
+    }
+    public function getPrice()
+    {
+        return number_format($this->price, 0, '.', '.');
     }
 }

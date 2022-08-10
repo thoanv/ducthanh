@@ -17,8 +17,4 @@ Route::get('/list', [PostController::class, 'index'])->name('post.list');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
-Route::get('/diem-den/{destination_slug?}/{slug?}', [HomeController::class, 'destination'])->name('destination');
 Route::get('/{category_slug?}/{slug?}', [HomeController::class, 'slug'])->name('slug');
-Route::get('/detail', [PostController::class, 'detail'])->name('post.detail');
-Route::post('/send-comment/comment/send', [PostController::class, 'ajaxComment'])->name('ajax-comment');
-Route::post('plus-like', [PostController::class, 'plusLike'])->name('plus-like');

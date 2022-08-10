@@ -44,7 +44,7 @@ class CategoryRepository extends AbstractRepository
     }
     public function getCategoriesFeatured()
     {
-        return $this->model->where([['status', true],['featured', true]])->orderBy('ID', 'DESC')->get();
+        return $this->model->where([['status', true],['featured', true],['type', 'product']])->whereNull('parent_id')->orderBy('ID', 'DESC')->get();
     }
     public function getCategoryBySlug($slug)
     {
@@ -57,5 +57,9 @@ class CategoryRepository extends AbstractRepository
     public function getCategoriesShowRight()
     {
         return $this->model->where([['status', true]])->take('5')->orderBy('ID', 'DESC')->get();
+    }
+    public function getListChildCategoriesById($category_id)
+    {
+        return $this->model->where([['status', true], ['parent_id', $category_id], ['featured', true]])->take('5')->orderBy('ID', 'DESC')->get();
     }
 }

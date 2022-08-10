@@ -61,6 +61,21 @@
             </div>
         </div>
         <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">Mô tả</h5>
+                <hr>
+                <div class="form-group">
+                    <textarea  rows="9" cols="70" id="content" class="form-control content"
+                               name="description">{!! $aboutU['description'] !!}</textarea>
+                    @if ($errors->has('description'))
+                        <div class="mt-1 notification-error">
+                            {{$errors->first('description')}}
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="card mt-4">
             <div class="card mt-4">
                 <div class="card-body">
                     <h5 class="card-title">Mạng xã hội</h5>
