@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('title', 'Trang home')
+@section('title', 'Trang chủ')
 @section('content')
     <div class="container">
-        @include('layouts.top_main')
+        @include('layouts.top_main_home')
         <div class="cf"></div>
         <div class="slide_index" id="homebanners">
             <div id="slide_banner">
@@ -140,8 +140,7 @@
                             </a>
                         </h4>
                     @endforeach
-                    <a
-                            href="{{route('slug', ['category_slug' => $category['slug']])}}" class="view_all cl_red">
+                    <a href="{{route('slug', ['category_slug' => $category['slug']])}}" class="view_all cl_red">
                         <b>Tất cả {{$category['name']}}
                         </b>
                     </a>

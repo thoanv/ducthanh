@@ -62,4 +62,12 @@ class CategoryRepository extends AbstractRepository
     {
         return $this->model->where([['status', true], ['parent_id', $category_id], ['featured', true]])->take('5')->orderBy('ID', 'DESC')->get();
     }
+    public function getAllListChildCategoriesById($category_id)
+    {
+        return $this->model->where([['status', true], ['parent_id', $category_id]])->orderBy('ID', 'DESC')->get();
+    }
+    public function getAllCategories()
+    {
+        return $this->model->where([['status', true],['type', 'product']])->whereNull('parent_id')->orderBy('ID', 'DESC')->get();
+    }
 }

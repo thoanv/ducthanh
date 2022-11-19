@@ -3,7 +3,7 @@ use App\Helpers\FunctionHelpers;
 @endphp
 <div id="top_main">
     <div class="all_categories three columns">
-        <div class="show_menu {{(isset($check) && $check) ? '' : 'hover'}}">
+        <div class="show_menu hover">
             <div class="tab_cate"><i class="ico ico_menu"></i>TẤT CẢ DANH MỤC</div>
             <div id="main_cate_menu">
                 <ul class="nav_menu">
